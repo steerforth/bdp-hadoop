@@ -1,12 +1,13 @@
 package com.steer.reduceJoin;
 
-import org.apache.hadoop.io.Writable;
+
+import org.apache.hadoop.io.WritableComparable;
 
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class TableBean implements Writable {
+public class TableBean implements WritableComparable<TableBean> {
     private String id;//订单id
     private String pid;//商品id
     private int amount;//商品数量
@@ -74,5 +75,15 @@ public class TableBean implements Writable {
     @Override
     public String toString() {
         return id+" "+pname+" "+amount;
+    }
+
+    @Override
+    public int compareTo(TableBean o) {
+        if( Integer.parseInt(this.getId()) < Integer.parseInt(o.getId())){
+            return 1;
+        }else if (Integer.parseInt(this.getId()) > Integer.parseInt(o.getId())){
+            return -1;
+        }
+        return 0;
     }
 }
