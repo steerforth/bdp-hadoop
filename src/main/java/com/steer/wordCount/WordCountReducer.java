@@ -32,4 +32,6 @@ public class WordCountReducer extends Reducer<Text, IntWritable,Text,IntWritable
         context.write(key,val);
     }
 
+
+
 }
